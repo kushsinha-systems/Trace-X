@@ -1,0 +1,12 @@
+# backend requirements — TRACE-X Phase 1
+# Python 3.11+ recommended (3.10 works for prototype); all free/open-source, offline-runnable.
+fastapi>=0.110
+uvicorn>=0.29
+sqlalchemy>=2.0
+pydantic>=2.6
+pytest>=8.0
+python-evtx>=0.7.5
+python-registry>=1.3.0
+# real-corpus extraction (E01/NTFS via pure Python; optional for synthetic-only runs)
+dissect.target>=3.20
+httpx>=0.24  # FastAPI TestClient

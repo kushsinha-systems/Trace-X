@@ -1,0 +1,6 @@
+{"EventID": 4624, "EventRecordID": 1001, "TimeCreated": "2026-09-01T10:00:00Z", "TargetUser": "alice", "LogonType": 2, "IpAddress": "10.0.0.5", "Channel": "Security"}
+{"EventID": 4688, "EventRecordID": 1002, "TimeCreated": "2026-09-01T10:01:00Z", "TargetUser": "alice", "NewProcessName": "C:\\Windows\\notepad.exe", "CommandLine": "notepad.exe secret.txt", "Channel": "Security"}
+{"EventID": 4663, "EventRecordID": 1003, "TimeCreated": "2026-09-01T10:02:00Z", "TargetUser": "alice", "ObjectName": "C:\\Users\\alice\\secret.txt", "Channel": "Security"}
+{"EventID": 4634, "EventRecordID": 1004, "TimeCreated": "2026-09-01T10:30:00Z", "TargetUser": "alice", "Channel": "Security"}
+{"EventID": 1102, "EventRecordID": 1005, "TimeCreated": "2026-09-01T10:12:43Z", "SubjectUser": "alice", "Channel": "Security"}
+{"EventID": 9999, "EventRecordID": 1006, "TimeCreated": "2026-09-01T11:00:00Z", "TargetUser": "alice", "Channel": "Security"}

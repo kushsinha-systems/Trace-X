@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TRACE-X "forensic instrument" theme — base layer + a few shared component classes. */
+html, body, #root {
+  background: #070910;
+  color: #e8ecf4;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ambient backdrop: two soft glows + a faint measurement grid, fixed behind everything */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(900px 520px at 12% -8%, rgba(91, 156, 255, 0.13), transparent 60%),
+    radial-gradient(760px 480px at 100% 0%, rgba(139, 123, 255, 0.10), transparent 60%),
+    radial-gradient(700px 500px at 60% 110%, rgba(56, 214, 245, 0.06), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px) 0 0 / 32px 32px,
+    #070910;
+}
+
+::selection { background: rgba(91, 156, 255, 0.35); }
+
+@layer components {
+  /* glass card: translucent fill, hairline border, top-edge highlight */
+  .tx-panel {
+    @apply rounded-card border border-white/[0.07];
+    background: linear-gradient(180deg, rgba(22, 28, 42, 0.72), rgba(13, 17, 26, 0.72));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+  }
+  .tx-inset {
+    @apply rounded-xl border border-white/[0.06];
+    background: rgba(255, 255, 255, 0.025);
+  }
+  .tx-gradient-text {
+    background: linear-gradient(90deg, #8fc0ff, #a99bff 60%, #6fe3f9);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .tx-skeleton {
+    background: linear-gradient(90deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.08) 40%, rgba(255,255,255,0.03) 80%) 0 0 / 800px 100%;
+    @apply animate-shimmer rounded-card;
+  }
+}
+
+/* scrollbars that match the theme */
+* { scrollbar-width: thin; scrollbar-color: #283043 transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: #283043; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* React Flow dark surface */
+.react-flow { background: transparent; }
+.react-flow__minimap { background: rgba(14, 18, 27, 0.9) !important; border: 1px solid #1e2533; border-radius: 10px; overflow: hidden; }
+.react-flow__controls { box-shadow: none !important; border: 1px solid #1e2533; border-radius: 10px; overflow: hidden; }
+.react-flow__controls-button { background: #141926 !important; border-color: #1e2533 !important; }
+.react-flow__controls-button:hover { background: #1b2232 !important; }
+.react-flow__controls-button svg { fill: #8e97ab; }
+.react-flow__attribution { display: none; }
+.react-flow__edge.animated path { stroke-dasharray: 6 5; }
+.react-flow__handle { opacity: 0; pointer-events: none; }
+
+/* rendered report: document typography */
+.tx-report { color: #c9d0dd; line-height: 1.7; font-size: 13.5px; }
+.tx-report h1 { font-size: 22px; font-weight: 700; color: #e8ecf4; margin: 0 0 14px; letter-spacing: -0.01em; }
+.tx-report h2 { font-size: 15px; font-weight: 650; color: #e8ecf4; margin: 26px 0 10px; padding-top: 18px; border-top: 1px solid #1e2533; }
+.tx-report h3 { font-size: 13.5px; font-weight: 600; color: #e8ecf4; margin: 16px 0 6px; }
+.tx-report p, .tx-report ul, .tx-report ol { margin: 0 0 10px; }
+.tx-report ul { list-style: disc; padding-left: 20px; }
+.tx-report ol { list-style: decimal; padding-left: 20px; }
+.tx-report li::marker { color: #5b9cff; }
+.tx-report strong { color: #e8ecf4; }
+.tx-report a { color: #8fc0ff; }
+.tx-report blockquote { border-left: 3px solid rgba(251, 191, 36, 0.6); background: rgba(251, 191, 36, 0.05); padding: 6px 12px; border-radius: 0 8px 8px 0; color: #d6c48f; }
+.tx-report table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 12px; margin: 8px 0 14px; border: 1px solid #1e2533; border-radius: 10px; overflow: hidden; }
+.tx-report td { vertical-align: top; }
+.tx-report tbody tr:hover td { background: rgba(255, 255, 255, 0.02); }
+.tx-report hr { border: 0; border-top: 1px solid #1e2533; margin: 20px 0; }
+.tx-report th, .tx-report td { border-bottom: 1px solid #1e2533; padding: 7px 10px; text-align: left; }
+.tx-report tr:last-child td { border-bottom: 0; }
+.tx-report th { background: #141926; color: #8e97ab; font-weight: 600; text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.06em; }
+.tx-report code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11.5px; background: rgba(91, 156, 255, 0.08); color: #b8d4ff; padding: 1px 5px; border-radius: 5px; }
+.tx-report pre { background: #0a0d15; border: 1px solid #1e2533; border-radius: 10px; padding: 12px; overflow: auto; }
+.tx-report pre code { background: none; padding: 0; color: #c9d0dd; }
+
+@media print {
+  body::before { display: none; }
+  html, body, #root { background: #fff; color: #000; }
+  .tx-no-print { display: none !important; }
+  .tx-panel { background: #fff; box-shadow: none; border-color: #ddd; }
+  .tx-report, .tx-report h1, .tx-report h2, .tx-report h3, .tx-report strong { color: #000; }
+}
+
+/* ---------- re-run analysis: deliberately over the top (see ReanalyseFX in App.jsx) ---------- */
+@keyframes fx-flash { 0% { opacity: 0 } 10% { opacity: 1 } 100% { opacity: 0 } }
+@keyframes fx-grid { 0% { opacity: 0; background-position: 0 0 } 18% { opacity: .6 } 100% { opacity: 0; background-position: 0 48px } }
+@keyframes fx-scan { 0% { transform: translateY(-140px); opacity: 0 } 6% { opacity: 1 } 94% { opacity: 1 } 100% { transform: translateY(110vh); opacity: 0 } }
+@keyframes fx-ring { from { transform: translate(-50%, -50%) scale(.15); opacity: .95 } to { transform: translate(-50%, -50%) scale(var(--s, 30)); opacity: 0 } }
+@keyframes fx-particle {
+  0% { transform: translate(-50%, -50%) scale(1.4); opacity: 1 }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0); opacity: 0 }
+}
+@keyframes fx-hud-in { from { opacity: 0; transform: translate(-50%, -18px) scale(.9); filter: blur(8px) } to { opacity: 1; transform: translate(-50%, 0) scale(1); filter: none } }
+@keyframes fx-hud-out { to { opacity: 0; transform: translate(-50%, -12px) scale(.95); filter: blur(6px) } }
+@keyframes fx-glitch {
+  0%, 100% { text-shadow: 0 0 18px rgba(56, 214, 245, .55); transform: none }
+  8% { text-shadow: -3px 0 #ff2bd6, 3px 0 #38d6f5; transform: translateX(2px) skewX(-6deg) }
+  12% { text-shadow: 3px 0 #ff2bd6, -3px 0 #38d6f5; transform: translateX(-2px) }
+  16% { text-shadow: 0 0 18px rgba(56, 214, 245, .55); transform: none }
+  62% { text-shadow: -2px 0 #ff2bd6, 2px 0 #38d6f5; transform: translateX(1px) }
+  65% { text-shadow: 0 0 18px rgba(56, 214, 245, .55); transform: none }
+}
+@keyframes fx-stamp { 0% { transform: scale(2.4); opacity: 0; filter: blur(6px) } 60% { transform: scale(.94); opacity: 1; filter: none } 100% { transform: scale(1) } }
+@keyframes fx-check-ring { from { transform: scale(.6); opacity: .9 } to { transform: scale(2.6); opacity: 0 } }
+@keyframes fx-bar { from { background-position: 0 0 } to { background-position: 40px 0 } }
+@keyframes fx-rescan {
+  0% { filter: none }
+  12% { filter: brightness(1.7) saturate(1.8) hue-rotate(28deg) blur(1.5px) }
+  30% { filter: brightness(.8) contrast(1.2) }
+  100% { filter: none }
+}
+.fx-rescan { animation: fx-rescan .9s ease-out both; }
+.fx-glitch { animation: fx-glitch 1.6s steps(1, end) infinite; }
+.fx-stripes {
+  background-image: linear-gradient(115deg, rgba(255, 255, 255, .22) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .22) 50%, rgba(255, 255, 255, .22) 75%, transparent 75%);
+  background-size: 40px 40px;
+  animation: fx-bar .6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-motion { display: none !important; }
+  .fx-rescan, .fx-glitch, .fx-stripes { animation: none !important; }
+}

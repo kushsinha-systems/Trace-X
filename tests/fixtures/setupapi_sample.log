@@ -1,0 +1,7 @@
+[Setupapi.dev.log sample]
+>>>  [Device Install (Hardware initiated) - USBSTOR\Disk&Ven_SanDisk&Prod_Ultra&Rev_1.00\4C5300123456789&0]
+>>>  Section start 2026/09/01 10:05:00.000
+     Device install connected USBSTOR\Disk&Ven_SanDisk enumerated successfully
+>>>  [Device Install (Hardware initiated) - USB\VID_0781&PID_5581\4C5300123456789]
+>>>  Section start 2026/09/01 10:05:01.000
+     Device disconnected USB\VID_0781&PID_5581 removed by user
